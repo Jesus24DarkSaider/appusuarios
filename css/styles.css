@@ -1,0 +1,16 @@
+.text-center{
+    text-align: center;
+    font-size: 40px;
+}
+
+.titulo-columnas{
+    text-align: center;
+}
+
+.izquierda {
+    left: 100% !important;
+}
+
+.ocultar{
+    display: none;
+}

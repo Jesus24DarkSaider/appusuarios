@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>App Usuarios</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+  <body>
+    <!-- BARRA DE NAVEGACION -->
+   <div>
+    <nav class="navbar navbar-expand navbar-dark bg-dark" aria-label="Second navbar example">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">App Usuarios</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample02" aria-controls="navbarsExample02" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>    
+          <div class="collapse navbar-collapse" id="navbarsExample02">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Inicio</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+   </div>
+   <div class="container">
+    <p class="text-center">Gestion de Usuarios</p>
+    <table class="table table-bordered">
+        <thead>
+            <p>
+                <button type="button" data-bs-toggle="modal" data-bs-target="#crearUsuario" class="btn btn-outline-success">Registrar Usuario
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus-square" viewBox="0 0 16 16">
+                        <path d="M14 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h12zM2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2z"/>
+                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                    </svg>
+                </button>
+            </p>
+            <tr>
+            <th class="titulo-columnas ocultar" scope="col">ID</th>
+            <th class="titulo-columnas" scope="col">Usuario</th>
+            <th class="titulo-columnas" scope="col">Password</th>
+            <th class="titulo-columnas" scope="col">Correo</th>
+            <th class="titulo-columnas" scope="col">Estado</th>
+            <th class="titulo-columnas"  scope="col">Actualizar</th>
+            <th scop class="titulo-columnas" e="col">Eliminar</th>
+          </tr>
+        </thead>
+        <tbody id="cuerpoTabla">
+         
+        </tbody>
+      </table>
+   </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+  
+
+
+
+ <!-- FORMULARIO MODAL DE MODIFICAR USUARIO -->
+<div class="modal fade" id="editarUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editarUsuario">Actualizar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form>
+              <div>
+                <input type="text" class="form-control" id="txtId">
+                <label for="recipient-name" class="col-form-label">Usuario:</label>
+                <input type="text" class="form-control" id="txtModUsuario">
+              </div>
+              <div>
+                <label for="message-text" class="col-form-label">Password:</label>
+                <input type="password" class="form-control" id="txtModPass">
+              </div>
+              <div>
+                  <label for="message-text" class="col-form-label">Correo:</label>
+                  <input type="email" class="form-control" id="txtModCorreo">
+              </div>
+              <div>
+                  <label class="form-check-label" for="radio1">Estado:  </label>     
+                  <input type="radio" class="form-check-input" id="radio1" name="estadoUsuario" value="ACTIVO"> Activo              
+                  <input type="radio" class="form-check-input" id="radio2" name="estadoUsuario" value="INACTIVO"> Inactivo
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" data-bs-dismiss="modal" onclick="confirmarModificacionDeUsuario()" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+ <!-- FORMULARIO MODAL DE MODIFICAR USUARIO -->
+ <div class="modal fade" id="crearUsuario" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="crearUsuario">Registrar Nuevo Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form>
+              <div>
+                <label for="recipient-name" class="col-form-label">Usuario:</label>
+                <input type="text" class="form-control" id="txtUsuario">
+              </div>
+              <div>
+                <label for="message-text" class="col-form-label">Password:</label>
+                <input type="password" class="form-control" id="txtPass">
+              </div>
+              <div>
+                  <label for="message-text" class="col-form-label">Correo:</label>
+                  <input type="email" class="form-control" id="txtCorreo">
+              </div>
+              <div>
+                  <label class="form-check-label" for="radio1">Estado:  </label>     
+                  <input type="radio" class="form-check-input" id="rbActivo" name="estadoUsuario" value="ACTIVO"> Activo              
+                  <input type="radio" class="form-check-input" id="rbInactivo" name="estadoUsuario" value="INACTIVO"> Inactivo
+                </div>
+            </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" data-bs-dismiss="modal" onclick="crearUsuario()" class="btn btn-primary">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- FORMULARIO MODAL DE ELIMINAR USUARIOS-->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ¿Seguro deseas eliminar?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+        <button type="button" class="btn btn-danger">Si</button>
+          </div>
+         </div>
+       </div>
+    </div>
+
+    <script type="text/javascript" src="../js/app.js"></script>
+  </body>
+</html>
+
+
+
+
+
